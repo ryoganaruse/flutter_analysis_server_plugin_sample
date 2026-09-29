@@ -6,3 +6,11 @@ flutter pub get
 cd packages/example
 flutter pub get
 ```
+
+## test
+`custom_plugin` のカスタムルールは `analyzer_testing` の `AnalysisRuleTest` でテストしています。
+
+```terminal
+cd packages/custom_plugin
+dart test
+```
