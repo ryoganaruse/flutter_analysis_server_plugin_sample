@@ -35,4 +35,4 @@ plugins:
   custom_plugin:
     path: ../custom_plugin
     diagnostics:
-      my_rule: true
+      avoid_await_in_lib: true

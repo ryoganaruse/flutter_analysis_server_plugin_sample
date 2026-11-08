@@ -5,15 +5,18 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
 import 'package:analyzer/error/error.dart';
 
-class MyRule extends AnalysisRule {
+class AvoidAwaitInLib extends AnalysisRule {
   static const LintCode code = LintCode(
-    'my_rule',
+    'avoid_await_in_lib',
     'No await expressions',
     correctionMessage: "Try removing 'await'.",
   );
 
-  MyRule()
-    : super(name: 'my_rule', description: 'A longer description of the rule.');
+  AvoidAwaitInLib()
+    : super(
+        name: 'avoid_await_in_lib',
+        description: 'A longer description of the rule.',
+      );
 
   @override
   LintCode get diagnosticCode => code;

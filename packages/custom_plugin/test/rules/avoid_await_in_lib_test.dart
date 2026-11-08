@@ -1,18 +1,18 @@
 import 'package:analyzer_testing/analysis_rule/analysis_rule.dart';
-import 'package:custom_plugin/src/rules/my_rule.dart';
+import 'package:custom_plugin/src/rules/avoid_await_in_lib.dart';
 import 'package:test_reflective_loader/test_reflective_loader.dart';
 
 void main() {
   defineReflectiveSuite(() {
-    defineReflectiveTests(MyRuleTest);
+    defineReflectiveTests(AvoidAwaitInLibTest);
   });
 }
 
 @reflectiveTest
-class MyRuleTest extends AnalysisRuleTest {
+class AvoidAwaitInLibTest extends AnalysisRuleTest {
   @override
   void setUp() {
-    rule = MyRule();
+    rule = AvoidAwaitInLib();
     super.setUp();
   }
 
@@ -52,17 +52,17 @@ Future<void> f(Future<int> p) async {
   Future<void> test_isSuppressedByIgnoreComment() async {
     const code = '''
 Future<void> f(Future<int> p) async {
-  // ignore: my_rule
+  // ignore: avoid_await_in_lib
   await p;
 }
 ''';
     await assertNoDiagnostics(code);
   }
 
-  /// `// ignore_for_file:` で、ファイル内の `my_rule` の指摘をすべて抑制できる。
+  /// `// ignore_for_file:` で、ファイル内の `avoid_await_in_lib` の指摘をすべて抑制できる。
   Future<void> test_isSuppressedByIgnoreForFileComment() async {
     const code = '''
-// ignore_for_file: my_rule
+// ignore_for_file: avoid_await_in_lib
 
 Future<void> f(Future<int> p) async {
   await p;
