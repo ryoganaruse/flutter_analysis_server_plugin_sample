@@ -58,4 +58,45 @@ Future<void> f(Future<int> p) async {
 ''';
     await assertNoDiagnostics(code);
   }
+
+  /// `// ignore_for_file:` で、ファイル内の `my_rule` の指摘をすべて抑制できる。
+  Future<void> test_isSuppressedByIgnoreForFileComment() async {
+    const code = '''
+// ignore_for_file: my_rule
+
+Future<void> f(Future<int> p) async {
+  await p;
+  await p;
+}
+''';
+    await assertNoDiagnostics(code);
+  }
+
+  /// `await for` も指摘するべきだが、今は見逃している。
+  /// ルールを直したら `test_reportsAwaitFor` に名前を変える。
+  Future<void> fail_test_reportsAwaitFor() async {
+    const code = '''
+Future<void> f(Stream<int> s) async {
+  await for (final _ in s) {}
+}
+''';
+    await assertDiagnostics(code, [
+      lint(code.indexOf('await for'), 'await'.length),
+    ]);
+  }
+
+  /// ファイルの読み込みを `await` するコードも指摘する。
+  /// 模擬 SDK の `File` に `readAsString` がないため、今はスキップしている。
+  Future<void> skip_test_reportsAwaitFileRead() async {
+    const code = '''
+import 'dart:io';
+
+Future<String> f() async {
+  return await File('a.txt').readAsString();
+}
+''';
+    await assertDiagnostics(code, [
+      lint(code.indexOf('await'), "await File('a.txt').readAsString()".length),
+    ]);
+  }
 }
