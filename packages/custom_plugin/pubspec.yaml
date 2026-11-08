@@ -1,12 +1,16 @@
 name: custom_plugin
-description: "A new Flutter package project."
+description: "A custom plugin package."
 version: 0.0.1
-homepage:
 
 environment:
-  sdk: ^3.10.0-290.4.beta
+  sdk: ^3.13.0
 resolution: workspace
 
 dependencies:
-  analysis_server_plugin: ^0.3.0
-  analyzer: ^8.0.0
+  analysis_server_plugin: ^0.3.26
+  analyzer: ^14.7.0
+
+dev_dependencies:
+  analyzer_testing: ^0.4.5
+  test: ^1.33.0
+  test_reflective_loader: ^0.6.0

@@ -4,7 +4,7 @@ version: 0.0.1
 homepage:
 
 environment:
-  sdk: ^3.10.0-290.4.beta
+  sdk: ^3.13.0
 
 workspace:
   - packages/custom_plugin
