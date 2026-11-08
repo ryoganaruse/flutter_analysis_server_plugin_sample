@@ -1,7 +1,6 @@
 name: custom_plugin
-description: "A new Flutter package project."
+description: "A custom plugin package."
 version: 0.0.1
-homepage:
 
 environment:
   sdk: ^3.13.0
